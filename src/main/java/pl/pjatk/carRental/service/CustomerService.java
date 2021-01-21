@@ -49,7 +49,7 @@ public class CustomerService {
 
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB() {
-
+        addCustomer(new Customer("Daniel", 600.50));
     }
 
 }

@@ -29,7 +29,10 @@ public class CarService {
 
 
     public Car addCar(Car car) {
-        return  carRepository.save(car);
+        if (car.getNumberOfAvailable() > 0){
+            car.setAvailable(true);
+        }
+        return carRepository.save(car);
     }
 
     public void updateCar() {

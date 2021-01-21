@@ -19,7 +19,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String name, Long wallet) {
+    public Customer(String name, double wallet) {
 
         this.name = name;
         this.wallet = wallet;
