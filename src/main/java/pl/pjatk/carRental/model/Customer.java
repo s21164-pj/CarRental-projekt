@@ -1,26 +1,22 @@
 package pl.pjatk.carRental.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 
 @Entity
 public class Customer {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private double wallet;
-
-    @ManyToMany(mappedBy = "customers")
-    private List<Car> cars;
+    private String ownedCar;
 
     public Customer() {
     }
 
     public Customer(String name, double wallet) {
-
         this.name = name;
         this.wallet = wallet;
     }
@@ -49,11 +45,11 @@ public class Customer {
         this.wallet = wallet;
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public String getOwnedCar() {
+        return ownedCar;
     }
 
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
+    public void setOwnedCar(String ownedCar) {
+        this.ownedCar = ownedCar;
     }
 }

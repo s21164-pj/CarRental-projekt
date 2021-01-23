@@ -1,31 +1,35 @@
 package pl.pjatk.carRental.DTO;
 
-import org.springframework.stereotype.Component;
-import pl.pjatk.carRental.model.Customer;
-
-import java.util.List;
-
-@Component
 public class CarDTO {
+    private Long id;
     private String mark;
     private String model;
     private String color;
     private Integer productionYear;
     private Double pricePerDay;
-    private Integer numberOfAvailable;
-    private List<Customer> customers;
+    private Boolean isAvailable;
+    private String ownerName;
 
-    public CarDTO() {
-    }
-
-    public CarDTO(String mark, String model, String color, Integer productionYear, Double pricePerDay, Integer numberOfAvailable, List<Customer> customers) {
+    public CarDTO(String mark, String model, String color, Integer productionYear, Double pricePerDay, Boolean isAvailable, String ownerName) {
         this.mark = mark;
         this.model = model;
         this.color = color;
         this.productionYear = productionYear;
         this.pricePerDay = pricePerDay;
-        this.numberOfAvailable = numberOfAvailable;
-        this.customers = customers;
+        this.isAvailable = isAvailable;
+        this.ownerName = ownerName;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public CarDTO() {
     }
 
     public String getMark() {
@@ -68,19 +72,19 @@ public class CarDTO {
         this.pricePerDay = pricePerDay;
     }
 
-    public Integer getNumberOfAvailable() {
-        return numberOfAvailable;
+    public Boolean getAvailable() {
+        return isAvailable;
     }
 
-    public void setNumberOfAvailable(Integer numberOfAvailable) {
-        this.numberOfAvailable = numberOfAvailable;
+    public void setAvailable(Boolean available) {
+        isAvailable = available;
     }
 
-    public List<Customer> getCustomers() {
-        return customers;
+    public String getOwnerName() {
+        return ownerName;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 }

@@ -1,12 +1,11 @@
-package pl.pjatk.carRental.service;
+package pl.pjatk.carRental.mapper;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.pjatk.carRental.DTO.CarDTO;
 import pl.pjatk.carRental.model.Car;
 
-@Component
+@Service
 public class CarMapper {
-
     public void mapDTOToCar(Car car, CarDTO carDTO) {
         if (carDTO.getMark() != null) {
             car.setMark(carDTO.getMark());
@@ -23,11 +22,12 @@ public class CarMapper {
         if (carDTO.getPricePerDay() != null) {
             car.setPricePerDay(carDTO.getPricePerDay());
         }
-        if (carDTO.getNumberOfAvailable() != null) {
-            car.setNumberOfAvailable(carDTO.getNumberOfAvailable());
-        }
-        if (carDTO.getCustomers() != null) {
-            car.setCustomers(carDTO.getCustomers());
+        if (carDTO.getOwnerName() != null) {
+            car.setOwnerName(carDTO.getOwnerName());
+            car.setAvailable(false);
+        }else {
+            car.setAvailable(true);
         }
     }
 }
+

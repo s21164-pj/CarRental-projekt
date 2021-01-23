@@ -1,12 +1,11 @@
-package pl.pjatk.carRental.service;
+package pl.pjatk.carRental.mapper;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.pjatk.carRental.DTO.CustomerDTO;
 import pl.pjatk.carRental.model.Customer;
 
-@Component
+@Service
 public class CustomerMapper {
-
     public void mapDTOToCustomer(Customer customer, CustomerDTO customerDTO) {
         if (customerDTO.getName() != null) {
             customer.setName(customerDTO.getName());
@@ -14,8 +13,8 @@ public class CustomerMapper {
         if (customerDTO.getWallet() != null) {
             customer.setWallet(customerDTO.getWallet());
         }
-        if (customerDTO.getCars() != null) {
-            customer.setCars(customerDTO.getCars());
+        if (customerDTO.getOwnedCar() != null) {
+            customer.setOwnedCar(customerDTO.getOwnedCar());
         }
     }
 }

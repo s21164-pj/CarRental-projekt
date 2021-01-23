@@ -1,35 +1,50 @@
 package pl.pjatk.carRental.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Car {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String mark;
     private String model;
     private String color;
     private int productionYear;
     private double pricePerDay;
-    private int numberOfAvailable;
-    private boolean isAvailable;
-
-    @ManyToMany
-    private List<Customer> customers;
+    private boolean isAvailable = true;
+    private String ownerName;
 
     public Car() {
     }
 
-    public Car(String mark, String model, String color, int productionYear, double pricePerDay, int numberOfAvailable) {
+    public Car(String mark, String model, String color, int productionYear, double pricePerDay) {
         this.mark = mark;
         this.model = model;
         this.color = color;
         this.productionYear = productionYear;
         this.pricePerDay = pricePerDay;
-        this.numberOfAvailable = numberOfAvailable;
+    }
+
+    public Car(String mark, String model, String color, int productionYear, double pricePerDay, boolean isAvailable) {
+        this.mark = mark;
+        this.model = model;
+        this.color = color;
+        this.productionYear = productionYear;
+        this.pricePerDay = pricePerDay;
+        this.isAvailable = isAvailable;
+    }
+
+    public Car(Long id, String mark, String model, String color, int productionYear, double pricePerDay, boolean isAvailable, String ownerName) {
+        this.id = id;
+        this.mark = mark;
+        this.model = model;
+        this.color = color;
+        this.productionYear = productionYear;
+        this.pricePerDay = pricePerDay;
+        this.isAvailable = isAvailable;
+        this.ownerName = ownerName;
     }
 
     public Long getId() {
@@ -80,14 +95,6 @@ public class Car {
         this.pricePerDay = pricePerDay;
     }
 
-    public int getNumberOfAvailable() {
-        return numberOfAvailable;
-    }
-
-    public void setNumberOfAvailable(int numberOfAvailable) {
-        this.numberOfAvailable = numberOfAvailable;
-    }
-
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -96,11 +103,12 @@ public class Car {
         isAvailable = available;
     }
 
-    public List<Customer> getCustomers() {
-        return customers;
+    public String getOwnerName() {
+        return ownerName;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 }
+

@@ -1,23 +1,23 @@
 package pl.pjatk.carRental.DTO;
 
-import org.springframework.stereotype.Component;
-import pl.pjatk.carRental.model.Car;
-
-import java.util.List;
-
-@Component
 public class CustomerDTO {
+    private Long id;
     private String name;
     private Double wallet;
-    private List<Car> cars;
+    private String ownedCar;
 
-    public CustomerDTO() {
-    }
-
-    public CustomerDTO(String name, Double wallet, List<Car> cars) {
+    public CustomerDTO(String name, double wallet, String ownedCar) {
         this.name = name;
         this.wallet = wallet;
-        this.cars = cars;
+        this.ownedCar = ownedCar;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -36,11 +36,11 @@ public class CustomerDTO {
         this.wallet = wallet;
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public String getOwnedCar() {
+        return ownedCar;
     }
 
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
+    public void setOwnedCar(String ownedCar) {
+        this.ownedCar = ownedCar;
     }
 }

@@ -1,12 +1,13 @@
 package pl.pjatk.carRental.service;
 
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.pjatk.carRental.DTO.CarDTO;
+import pl.pjatk.carRental.mapper.CarMapper;
 import pl.pjatk.carRental.model.Car;
 import pl.pjatk.carRental.repository.CarRepository;
 
-import java.awt.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -15,9 +16,14 @@ public class CarService {
 
     private CarRepository carRepository;
 
-    public CarService(CarRepository carRepository) {
+    private CarMapper carMapper;
+
+    @Autowired
+    public CarService(CarRepository carRepository, CarMapper carMapper) {
         this.carRepository = carRepository;
+        this.carMapper = carMapper;
     }
+
 
     public List<Car> findAll() {
         return carRepository.findAll();
@@ -29,25 +35,27 @@ public class CarService {
 
 
     public Car addCar(Car car) {
-        if (car.getNumberOfAvailable() > 0){
-            car.setAvailable(true);
-        }
         return carRepository.save(car);
     }
 
-    public void updateCar() {
-
+    public Car updateCar(Long carID, CarDTO carWithUpdate) {
+        Car dbCar = carRepository.findById(carID).get();
+        carMapper.mapDTOToCar(dbCar, carWithUpdate);
+        return carRepository.save(dbCar);
     }
 
     public boolean deleteCar(Long id) {
-
-        if (carRepository.findById(id).get().getCustomers().isEmpty()) {
-            carRepository.deleteById(id);
-            return true;
-        }else {
-            return false;
+        if (carRepository.findById(id).isPresent()) {
+            if (carRepository.findById(id).get().getOwnerName() == null) {
+                carRepository.deleteById(id);
+                return true;
+            }
         }
+        return false;
     }
+
+
+
 
     public void deleteAll() {
         carRepository.deleteAll();
@@ -55,10 +63,11 @@ public class CarService {
 
 
 
-
-    @EventListener(ApplicationReadyEvent.class)
-    public void fillDB() {
-        addCar(new Car("Ford", "Panda", "red", 2000, 250.0, 3));
-    }
 }
+
+
+
+
+
+
 

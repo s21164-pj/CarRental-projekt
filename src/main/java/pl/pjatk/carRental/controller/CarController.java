@@ -1,7 +1,9 @@
 package pl.pjatk.carRental.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.pjatk.carRental.DTO.CarDTO;
 import pl.pjatk.carRental.model.Car;
 import pl.pjatk.carRental.service.CarService;
 
@@ -14,13 +16,14 @@ public class CarController {
 
     private CarService carService;
 
+    @Autowired
     public CarController(CarService carService) {
         this.carService = carService;
     }
 
     @GetMapping("/hello")
     public ResponseEntity<String> hello() {
-       return ResponseEntity.ok("hello world");
+        return ResponseEntity.ok("hello world");
     }
 
     @GetMapping("/all")
@@ -28,7 +31,7 @@ public class CarController {
         return ResponseEntity.ok(carService.findAll());
     }
 
-    @GetMapping("/id")
+    @GetMapping
     public ResponseEntity<Car> findByID(@RequestParam Long id) {
         Optional<Car> byId = carService.findByID(id);
         if (byId.isPresent()) {
@@ -36,6 +39,11 @@ public class CarController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PutMapping("/update")
+    public  ResponseEntity<Car> updateCar(@RequestParam Long id, @RequestBody CarDTO carDTO) {
+        return ResponseEntity.ok(carService.updateCar(id, carDTO));
     }
 
     @PostMapping("/add")
