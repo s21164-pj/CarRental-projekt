@@ -5,15 +5,16 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pl.pjatk.carRental.model.Car;
-import pl.pjatk.carRental.model.Customer;
+import pl.pjatk.carRental.repository.CarRepository;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-
+@ExtendWith(MockitoExtension.class)
 class RentServiceTest {
 
 
+    @Mock
+    private CarService carService;
+    private CarRepository carRepository;
+    @InjectMocks
     private RentService rentService;
 
 

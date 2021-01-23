@@ -25,7 +25,7 @@ public class CarMapper {
         if (carDTO.getOwnerName() != null) {
             car.setOwnerName(carDTO.getOwnerName());
             car.setAvailable(false);
-        }else {
+        } else {
             car.setAvailable(true);
         }
     }

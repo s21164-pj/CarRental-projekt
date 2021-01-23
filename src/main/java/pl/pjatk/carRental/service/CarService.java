@@ -7,7 +7,6 @@ import pl.pjatk.carRental.mapper.CarMapper;
 import pl.pjatk.carRental.model.Car;
 import pl.pjatk.carRental.repository.CarRepository;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -55,12 +54,9 @@ public class CarService {
     }
 
 
-
-
     public void deleteAll() {
         carRepository.deleteAll();
     }
-
 
 
 }

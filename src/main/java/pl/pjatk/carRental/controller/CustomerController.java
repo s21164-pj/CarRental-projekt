@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.pjatk.carRental.DTO.CustomerDTO;
-import pl.pjatk.carRental.model.Car;
 import pl.pjatk.carRental.model.Customer;
 import pl.pjatk.carRental.service.CustomerService;
 
@@ -43,7 +42,7 @@ public class CustomerController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Customer> updateCustomer(@RequestParam Long id,@RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity<Customer> updateCustomer(@RequestParam Long id, @RequestBody CustomerDTO customerDTO) {
         return ResponseEntity.ok(customerService.updateCustomer(id, customerDTO));
     }
 

@@ -1,16 +1,9 @@
 package pl.pjatk.carRental.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import pl.pjatk.carRental.model.Car;
 import pl.pjatk.carRental.model.Customer;
-import pl.pjatk.carRental.repository.CarRepository;
-import pl.pjatk.carRental.repository.CustomerRepository;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class RentService {
@@ -43,7 +36,7 @@ public class RentService {
     public boolean canRent(Customer customer, Car car, int days) {
         if (customer.getWallet() > car.getPricePerDay() * days && car.isAvailable() && car.getOwnerName() == null && customer.getOwnedCar() == null) {
             return true;
-        }  else {
+        } else {
             return false;
         }
     }
@@ -53,7 +46,7 @@ public class RentService {
     }
 
     public void takeCar(Customer customer, Car car) {
-        customer.setOwnedCar("ID:" + car.getId() + " " +car.getMark() + " " + car.getModel());
+        customer.setOwnedCar("ID:" + car.getId() + " " + car.getMark() + " " + car.getModel());
         car.setOwnerName("ID" + " " + customer.getName());
         car.setAvailable(false);
     }
@@ -67,7 +60,7 @@ public class RentService {
             car.setAvailable(true);
             carService.addCar(car);
             return customerService.addCustomer(customer);
-        }else {
+        } else {
             return customer;
         }
 

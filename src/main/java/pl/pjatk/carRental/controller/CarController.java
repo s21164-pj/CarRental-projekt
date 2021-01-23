@@ -42,7 +42,7 @@ public class CarController {
     }
 
     @PutMapping("/update")
-    public  ResponseEntity<Car> updateCar(@RequestParam Long id, @RequestBody CarDTO carDTO) {
+    public ResponseEntity<Car> updateCar(@RequestParam Long id, @RequestBody CarDTO carDTO) {
         return ResponseEntity.ok(carService.updateCar(id, carDTO));
     }
 
@@ -56,7 +56,6 @@ public class CarController {
         carService.deleteCar(id);
         return ResponseEntity.ok().build();
     }
-
 
 
 }
